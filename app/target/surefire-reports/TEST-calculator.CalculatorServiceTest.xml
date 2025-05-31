@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="calculator.CalculatorServiceTest" time="0.078" tests="13" errors="0" skipped="0" failures="12">
+  <properties>
+    <property name="java.specification.version" value="21"/>
+    <property name="sun.jnu.encoding" value="UTF-8"/>
+    <property name="java.class.path" value="/home/szreku/projects/calculator-aligator/app/target/test-classes:/home/szreku/projects/calculator-aligator/app/target/classes:/home/szreku/.m2/repository/org/springframework/boot/spring-boot-starter/3.5.0/spring-boot-starter-3.5.0.jar:/home/szreku/.m2/repository/org/springframework/boot/spring-boot/3.5.0/spring-boot-3.5.0.jar:/home/szreku/.m2/repository/org/springframework/spring-context/6.2.7/spring-context-6.2.7.jar:/home/szreku/.m2/repository/org/springframework/spring-aop/6.2.7/spring-aop-6.2.7.jar:/home/szreku/.m2/repository/org/springframework/spring-beans/6.2.7/spring-beans-6.2.7.jar:/home/szreku/.m2/repository/org/springframework/spring-expression/6.2.7/spring-expression-6.2.7.jar:/home/szreku/.m2/repository/io/micrometer/micrometer-observation/1.15.0/micrometer-observation-1.15.0.jar:/home/szreku/.m2/repository/io/micrometer/micrometer-commons/1.15.0/micrometer-commons-1.15.0.jar:/home/szreku/.m2/repository/org/springframework/boot/spring-boot-autoconfigure/3.5.0/spring-boot-autoconfigure-3.5.0.jar:/home/szreku/.m2/repository/org/springframework/boot/spring-boot-starter-logging/3.5.0/spring-boot-starter-logging-3.5.0.jar:/home/szreku/.m2/repository/ch/qos/logback/logback-classic/1.5.18/logback-classic-1.5.18.jar:/home/szreku/.m2/repository/ch/qos/logback/logback-core/1.5.18/logback-core-1.5.18.jar:/home/szreku/.m2/repository/org/apache/logging/log4j/log4j-to-slf4j/2.24.3/log4j-to-slf4j-2.24.3.jar:/home/szreku/.m2/repository/org/apache/logging/log4j/log4j-api/2.24.3/log4j-api-2.24.3.jar:/home/szreku/.m2/repository/org/slf4j/jul-to-slf4j/2.0.17/jul-to-slf4j-2.0.17.jar:/home/szreku/.m2/repository/jakarta/annotation/jakarta.annotation-api/2.1.1/jakarta.annotation-api-2.1.1.jar:/home/szreku/.m2/repository/org/springframework/spring-core/6.2.7/spring-core-6.2.7.jar:/home/szreku/.m2/repository/org/springframework/spring-jcl/6.2.7/spring-jcl-6.2.7.jar:/home/szreku/.m2/repository/org/yaml/snakeyaml/2.4/snakeyaml-2.4.jar:/home/szreku/.m2/repository/org/springframework/boot/spring-boot-starter-test/3.5.0/spring-boot-starter-test-3.5.0.jar:/home/szreku/.m2/repository/org/springframework/boot/spring-boot-test/3.5.0/spring-boot-test-3.5.0.jar:/home/szreku/.m2/repository/org/springframework/boot/spring-boot-test-autoconfigure/3.5.0/spring-boot-test-autoconfigure-3.5.0.jar:/home/szreku/.m2/repository/com/jayway/jsonpath/json-path/2.9.0/json-path-2.9.0.jar:/home/szreku/.m2/repository/org/slf4j/slf4j-api/2.0.17/slf4j-api-2.0.17.jar:/home/szreku/.m2/repository/jakarta/xml/bind/jakarta.xml.bind-api/4.0.2/jakarta.xml.bind-api-4.0.2.jar:/home/szreku/.m2/repository/jakarta/activation/jakarta.activation-api/2.1.3/jakarta.activation-api-2.1.3.jar:/home/szreku/.m2/repository/net/minidev/json-smart/2.5.2/json-smart-2.5.2.jar:/home/szreku/.m2/repository/net/minidev/accessors-smart/2.5.2/accessors-smart-2.5.2.jar:/home/szreku/.m2/repository/org/ow2/asm/asm/9.7.1/asm-9.7.1.jar:/home/szreku/.m2/repository/org/assertj/assertj-core/3.27.3/assertj-core-3.27.3.jar:/home/szreku/.m2/repository/net/bytebuddy/byte-buddy/1.17.5/byte-buddy-1.17.5.jar:/home/szreku/.m2/repository/org/awaitility/awaitility/4.3.0/awaitility-4.3.0.jar:/home/szreku/.m2/repository/org/hamcrest/hamcrest/3.0/hamcrest-3.0.jar:/home/szreku/.m2/repository/org/junit/jupiter/junit-jupiter/5.12.2/junit-jupiter-5.12.2.jar:/home/szreku/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.12.2/junit-jupiter-api-5.12.2.jar:/home/szreku/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/home/szreku/.m2/repository/org/junit/platform/junit-platform-commons/1.12.2/junit-platform-commons-1.12.2.jar:/home/szreku/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/home/szreku/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.12.2/junit-jupiter-params-5.12.2.jar:/home/szreku/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.12.2/junit-jupiter-engine-5.12.2.jar:/home/szreku/.m2/repository/org/junit/platform/junit-platform-engine/1.12.2/junit-platform-engine-1.12.2.jar:/home/szreku/.m2/repository/org/mockito/mockito-core/5.17.0/mockito-core-5.17.0.jar:/home/szreku/.m2/repository/net/bytebuddy/byte-buddy-agent/1.17.5/byte-buddy-agent-1.17.5.jar:/home/szreku/.m2/repository/org/objenesis/objenesis/3.3/objenesis-3.3.jar:/home/szreku/.m2/repository/org/mockito/mockito-junit-jupiter/5.17.0/mockito-junit-jupiter-5.17.0.jar:/home/szreku/.m2/repository/org/skyscreamer/jsonassert/1.5.3/jsonassert-1.5.3.jar:/home/szreku/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar:/home/szreku/.m2/repository/org/springframework/spring-test/6.2.7/spring-test-6.2.7.jar:/home/szreku/.m2/repository/org/xmlunit/xmlunit-core/2.10.1/xmlunit-core-2.10.1.jar:"/>
+    <property name="java.vm.vendor" value="Amazon.com Inc."/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="java.vendor.url" value="https://aws.amazon.com/corretto/"/>
+    <property name="os.name" value="Linux"/>
+    <property name="java.vm.specification.version" value="21"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="sun.boot.library.path" value="/usr/lib/jvm/java-21-amazon-corretto/lib"/>
+    <property name="sun.java.command" value="/home/szreku/projects/calculator-aligator/app/target/surefire/surefirebooter-20250531221303765_3.jar /home/szreku/projects/calculator-aligator/app/target/surefire 2025-05-31T22-13-03_687-jvmRun1 surefire-20250531221303765_1tmp surefire_0-20250531221303765_2tmp"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="surefire.test.class.path" value="/home/szreku/projects/calculator-aligator/app/target/test-classes:/home/szreku/projects/calculator-aligator/app/target/classes:/home/szreku/.m2/repository/org/springframework/boot/spring-boot-starter/3.5.0/spring-boot-starter-3.5.0.jar:/home/szreku/.m2/repository/org/springframework/boot/spring-boot/3.5.0/spring-boot-3.5.0.jar:/home/szreku/.m2/repository/org/springframework/spring-context/6.2.7/spring-context-6.2.7.jar:/home/szreku/.m2/repository/org/springframework/spring-aop/6.2.7/spring-aop-6.2.7.jar:/home/szreku/.m2/repository/org/springframework/spring-beans/6.2.7/spring-beans-6.2.7.jar:/home/szreku/.m2/repository/org/springframework/spring-expression/6.2.7/spring-expression-6.2.7.jar:/home/szreku/.m2/repository/io/micrometer/micrometer-observation/1.15.0/micrometer-observation-1.15.0.jar:/home/szreku/.m2/repository/io/micrometer/micrometer-commons/1.15.0/micrometer-commons-1.15.0.jar:/home/szreku/.m2/repository/org/springframework/boot/spring-boot-autoconfigure/3.5.0/spring-boot-autoconfigure-3.5.0.jar:/home/szreku/.m2/repository/org/springframework/boot/spring-boot-starter-logging/3.5.0/spring-boot-starter-logging-3.5.0.jar:/home/szreku/.m2/repository/ch/qos/logback/logback-classic/1.5.18/logback-classic-1.5.18.jar:/home/szreku/.m2/repository/ch/qos/logback/logback-core/1.5.18/logback-core-1.5.18.jar:/home/szreku/.m2/repository/org/apache/logging/log4j/log4j-to-slf4j/2.24.3/log4j-to-slf4j-2.24.3.jar:/home/szreku/.m2/repository/org/apache/logging/log4j/log4j-api/2.24.3/log4j-api-2.24.3.jar:/home/szreku/.m2/repository/org/slf4j/jul-to-slf4j/2.0.17/jul-to-slf4j-2.0.17.jar:/home/szreku/.m2/repository/jakarta/annotation/jakarta.annotation-api/2.1.1/jakarta.annotation-api-2.1.1.jar:/home/szreku/.m2/repository/org/springframework/spring-core/6.2.7/spring-core-6.2.7.jar:/home/szreku/.m2/repository/org/springframework/spring-jcl/6.2.7/spring-jcl-6.2.7.jar:/home/szreku/.m2/repository/org/yaml/snakeyaml/2.4/snakeyaml-2.4.jar:/home/szreku/.m2/repository/org/springframework/boot/spring-boot-starter-test/3.5.0/spring-boot-starter-test-3.5.0.jar:/home/szreku/.m2/repository/org/springframework/boot/spring-boot-test/3.5.0/spring-boot-test-3.5.0.jar:/home/szreku/.m2/repository/org/springframework/boot/spring-boot-test-autoconfigure/3.5.0/spring-boot-test-autoconfigure-3.5.0.jar:/home/szreku/.m2/repository/com/jayway/jsonpath/json-path/2.9.0/json-path-2.9.0.jar:/home/szreku/.m2/repository/org/slf4j/slf4j-api/2.0.17/slf4j-api-2.0.17.jar:/home/szreku/.m2/repository/jakarta/xml/bind/jakarta.xml.bind-api/4.0.2/jakarta.xml.bind-api-4.0.2.jar:/home/szreku/.m2/repository/jakarta/activation/jakarta.activation-api/2.1.3/jakarta.activation-api-2.1.3.jar:/home/szreku/.m2/repository/net/minidev/json-smart/2.5.2/json-smart-2.5.2.jar:/home/szreku/.m2/repository/net/minidev/accessors-smart/2.5.2/accessors-smart-2.5.2.jar:/home/szreku/.m2/repository/org/ow2/asm/asm/9.7.1/asm-9.7.1.jar:/home/szreku/.m2/repository/org/assertj/assertj-core/3.27.3/assertj-core-3.27.3.jar:/home/szreku/.m2/repository/net/bytebuddy/byte-buddy/1.17.5/byte-buddy-1.17.5.jar:/home/szreku/.m2/repository/org/awaitility/awaitility/4.3.0/awaitility-4.3.0.jar:/home/szreku/.m2/repository/org/hamcrest/hamcrest/3.0/hamcrest-3.0.jar:/home/szreku/.m2/repository/org/junit/jupiter/junit-jupiter/5.12.2/junit-jupiter-5.12.2.jar:/home/szreku/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.12.2/junit-jupiter-api-5.12.2.jar:/home/szreku/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/home/szreku/.m2/repository/org/junit/platform/junit-platform-commons/1.12.2/junit-platform-commons-1.12.2.jar:/home/szreku/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/home/szreku/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.12.2/junit-jupiter-params-5.12.2.jar:/home/szreku/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.12.2/junit-jupiter-engine-5.12.2.jar:/home/szreku/.m2/repository/org/junit/platform/junit-platform-engine/1.12.2/junit-platform-engine-1.12.2.jar:/home/szreku/.m2/repository/org/mockito/mockito-core/5.17.0/mockito-core-5.17.0.jar:/home/szreku/.m2/repository/net/bytebuddy/byte-buddy-agent/1.17.5/byte-buddy-agent-1.17.5.jar:/home/szreku/.m2/repository/org/objenesis/objenesis/3.3/objenesis-3.3.jar:/home/szreku/.m2/repository/org/mockito/mockito-junit-jupiter/5.17.0/mockito-junit-jupiter-5.17.0.jar:/home/szreku/.m2/repository/org/skyscreamer/jsonassert/1.5.3/jsonassert-1.5.3.jar:/home/szreku/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar:/home/szreku/.m2/repository/org/springframework/spring-test/6.2.7/spring-test-6.2.7.jar:/home/szreku/.m2/repository/org/xmlunit/xmlunit-core/2.10.1/xmlunit-core-2.10.1.jar:"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="/home/szreku"/>
+    <property name="user.language" value="en"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.version.date" value="2024-04-16"/>
+    <property name="java.home" value="/usr/lib/jvm/java-21-amazon-corretto"/>
+    <property name="file.separator" value="/"/>
+    <property name="basedir" value="/home/szreku/projects/calculator-aligator/app"/>
+    <property name="java.vm.compressedOopsMode" value="Zero based"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="surefire.real.class.path" value="/home/szreku/projects/calculator-aligator/app/target/surefire/surefirebooter-20250531221303765_3.jar"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="java.runtime.version" value="21.0.3+9-LTS"/>
+    <property name="user.name" value="szreku"/>
+    <property name="stdout.encoding" value="UTF-8"/>
+    <property name="path.separator" value=":"/>
+    <property name="os.version" value="6.6.87.1-microsoft-standard-WSL2"/>
+    <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
+    <property name="java.vendor.version" value="Corretto-21.0.3.9.1"/>
+    <property name="maven.ext.class.path" value="/tmp/tmpzQCpc0/maven-event-listener.jar"/>
+    <property name="localRepository" value="/home/szreku/.m2/repository"/>
+    <property name="java.vendor.url.bug" value="https://github.com/corretto/corretto-21/issues/"/>
+    <property name="java.io.tmpdir" value="/tmp"/>
+    <property name="java.version" value="21.0.3"/>
+    <property name="user.dir" value="/home/szreku/projects/calculator-aligator/app"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="native.encoding" value="UTF-8"/>
+    <property name="java.library.path" value="/usr/java/packages/lib:/usr/lib64:/lib64:/lib:/usr/lib"/>
+    <property name="java.vm.info" value="mixed mode, sharing"/>
+    <property name="stderr.encoding" value="UTF-8"/>
+    <property name="java.vendor" value="Amazon.com Inc."/>
+    <property name="java.vm.version" value="21.0.3+9-LTS"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="java.class.version" value="65.0"/>
+  </properties>
+  <testcase name="testSimpleAddition" classname="calculator.CalculatorServiceTest" time="0.029">
+    <failure message="expected: &lt;5&gt; but was: &lt;0&gt;" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: expected: <5> but was: <0>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:150)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:145)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:531)
+	at calculator.CalculatorServiceTest.testSimpleAddition(CalculatorServiceTest.java:18)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+]]></failure>
+  </testcase>
+  <testcase name="testEmptyExpression" classname="calculator.CalculatorServiceTest" time="0.004">
+    <failure message="Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown." type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown.
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:152)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:73)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:35)
+	at org.junit.jupiter.api.Assertions.assertThrows(Assertions.java:3128)
+	at calculator.CalculatorServiceTest.testEmptyExpression(CalculatorServiceTest.java:66)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+]]></failure>
+  </testcase>
+  <testcase name="testMultiplication" classname="calculator.CalculatorServiceTest" time="0.002">
+    <failure message="expected: &lt;20&gt; but was: &lt;0&gt;" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: expected: <20> but was: <0>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:150)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:145)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:531)
+	at calculator.CalculatorServiceTest.testMultiplication(CalculatorServiceTest.java:38)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+]]></failure>
+  </testcase>
+  <testcase name="testNullExpression" classname="calculator.CalculatorServiceTest" time="0.002">
+    <failure message="Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown." type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown.
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:152)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:73)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:35)
+	at org.junit.jupiter.api.Assertions.assertThrows(Assertions.java:3128)
+	at calculator.CalculatorServiceTest.testNullExpression(CalculatorServiceTest.java:73)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+]]></failure>
+  </testcase>
+  <testcase name="testOperatorPrecedence" classname="calculator.CalculatorServiceTest" time="0.001">
+    <failure message="expected: &lt;14&gt; but was: &lt;0&gt;" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: expected: <14> but was: <0>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:150)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:145)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:531)
+	at calculator.CalculatorServiceTest.testOperatorPrecedence(CalculatorServiceTest.java:48)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+]]></failure>
+  </testcase>
+  <testcase name="testComplexExpression" classname="calculator.CalculatorServiceTest" time="0.002">
+    <failure message="expected: &lt;10&gt; but was: &lt;0&gt;" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: expected: <10> but was: <0>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:150)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:145)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:531)
+	at calculator.CalculatorServiceTest.testComplexExpression(CalculatorServiceTest.java:54)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+]]></failure>
+  </testcase>
+  <testcase name="testInvalidNumber" classname="calculator.CalculatorServiceTest" time="0.002">
+    <failure message="Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown." type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown.
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:152)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:73)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:35)
+	at org.junit.jupiter.api.Assertions.assertThrows(Assertions.java:3128)
+	at calculator.CalculatorServiceTest.testInvalidNumber(CalculatorServiceTest.java:87)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+]]></failure>
+  </testcase>
+  <testcase name="testDivisionByZero" classname="calculator.CalculatorServiceTest" time="0.002">
+    <failure message="Expected java.lang.ArithmeticException to be thrown, but nothing was thrown." type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: Expected java.lang.ArithmeticException to be thrown, but nothing was thrown.
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:152)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:73)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:35)
+	at org.junit.jupiter.api.Assertions.assertThrows(Assertions.java:3128)
+	at calculator.CalculatorServiceTest.testDivisionByZero(CalculatorServiceTest.java:59)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+]]></failure>
+  </testcase>
+  <testcase name="testDivision" classname="calculator.CalculatorServiceTest" time="0.002">
+    <failure message="expected: &lt;4&gt; but was: &lt;0&gt;" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: expected: <4> but was: <0>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:150)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:145)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:531)
+	at calculator.CalculatorServiceTest.testDivision(CalculatorServiceTest.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+]]></failure>
+  </testcase>
+  <testcase name="testSubtraction" classname="calculator.CalculatorServiceTest" time="0.001">
+    <failure message="expected: &lt;5&gt; but was: &lt;0&gt;" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: expected: <5> but was: <0>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:150)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:145)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:531)
+	at calculator.CalculatorServiceTest.testSubtraction(CalculatorServiceTest.java:33)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+]]></failure>
+  </testcase>
+  <testcase name="testInvalidExpression" classname="calculator.CalculatorServiceTest" time="0.001">
+    <failure message="Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown." type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown.
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:152)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:73)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:35)
+	at org.junit.jupiter.api.Assertions.assertThrows(Assertions.java:3128)
+	at calculator.CalculatorServiceTest.testInvalidExpression(CalculatorServiceTest.java:80)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+]]></failure>
+  </testcase>
+  <testcase name="testNegativeNumbers" classname="calculator.CalculatorServiceTest" time="0.001"/>
+  <testcase name="testMultipleOperations" classname="calculator.CalculatorServiceTest" time="0.002">
+    <failure message="expected: &lt;7&gt; but was: &lt;0&gt;" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: expected: <7> but was: <0>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:150)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:145)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:531)
+	at calculator.CalculatorServiceTest.testMultipleOperations(CalculatorServiceTest.java:23)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+]]></failure>
+  </testcase>
+</testsuite>
