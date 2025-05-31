@@ -1,6 +1,5 @@
 package com.jpozarycki.calculator;
 
-import calculator.CalculatorFacade;
 import com.jpozarycki.calculator.dto.CalculationRequest;
 import com.jpozarycki.calculator.dto.CalculationResponse;
 import jakarta.validation.Valid;
@@ -13,12 +12,23 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/calculate")
+@RequestMapping("/api/calculate")
 class CalculatorController {
     private final CalculatorFacade calculatorFacade;
 
     @PostMapping
     ResponseEntity<CalculationResponse> calculate(@RequestBody @Valid CalculationRequest request) {
-        return null;
+        try {
+            String expression = request.expression();
+            int result = calculatorFacade.calculate(expression);
+            CalculationResponse response = new CalculationResponse(result, null);
+            return ResponseEntity.ok(response);
+        } catch (IllegalArgumentException | ArithmeticException e) {
+            CalculationResponse response = new CalculationResponse(null, e.getMessage());
+            return ResponseEntity.badRequest().body(response);
+        } catch (Exception e) {
+            CalculationResponse response = new CalculationResponse(null, "Invalid expression");
+            return ResponseEntity.badRequest().body(response);
+        }
     }
 }

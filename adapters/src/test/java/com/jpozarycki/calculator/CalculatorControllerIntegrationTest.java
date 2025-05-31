@@ -21,6 +21,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ActiveProfiles("test")
 class CalculatorControllerIntegrationTest {
 
+    private static final String URI = "/api/calculate";
+
     @Autowired
     private MockMvc mockMvc;
 
@@ -35,7 +37,7 @@ class CalculatorControllerIntegrationTest {
         CalculationRequest request = new CalculationRequest("2 + 3");
 
         // When & Then
-        mockMvc.perform(post("/calculate")
+        mockMvc.perform(post(URI)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(request)))
                 .andExpect(status().isOk())
@@ -50,7 +52,7 @@ class CalculatorControllerIntegrationTest {
         CalculationRequest request = new CalculationRequest("3 * 2 + 1");
 
         // When & Then
-        mockMvc.perform(post("/calculate")
+        mockMvc.perform(post(URI)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(request)))
                 .andExpect(status().isOk())
@@ -63,7 +65,7 @@ class CalculatorControllerIntegrationTest {
         CalculationRequest request = new CalculationRequest("3 * -2 + 6");
 
         // When & Then
-        mockMvc.perform(post("/calculate")
+        mockMvc.perform(post(URI)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(request)))
                 .andExpect(status().isOk())
@@ -76,7 +78,7 @@ class CalculatorControllerIntegrationTest {
         CalculationRequest request = new CalculationRequest("10 / 2 + 3 * 4 - 1");
 
         // When & Then
-        mockMvc.perform(post("/calculate")
+        mockMvc.perform(post(URI)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(request)))
                 .andExpect(status().isOk())
@@ -89,7 +91,7 @@ class CalculatorControllerIntegrationTest {
         CalculationRequest request = new CalculationRequest("7 / 2");
 
         // When & Then
-        mockMvc.perform(post("/calculate")
+        mockMvc.perform(post(URI)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(request)))
                 .andExpect(status().isOk())
@@ -104,7 +106,7 @@ class CalculatorControllerIntegrationTest {
         CalculationRequest request = new CalculationRequest("10 / 0");
 
         // When & Then
-        mockMvc.perform(post("/calculate")
+        mockMvc.perform(post(URI)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(request)))
                 .andExpect(status().isBadRequest())
@@ -119,7 +121,7 @@ class CalculatorControllerIntegrationTest {
         CalculationRequest request = new CalculationRequest("2 + + 3");
 
         // When & Then
-        mockMvc.perform(post("/calculate")
+        mockMvc.perform(post(URI)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(request)))
                 .andExpect(status().isBadRequest())
@@ -132,7 +134,7 @@ class CalculatorControllerIntegrationTest {
         CalculationRequest request = new CalculationRequest("2 & 3");
 
         // When & Then
-        mockMvc.perform(post("/calculate")
+        mockMvc.perform(post(URI)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(request)))
                 .andExpect(status().isBadRequest())
@@ -145,7 +147,7 @@ class CalculatorControllerIntegrationTest {
         CalculationRequest request = new CalculationRequest("abc + 2");
 
         // When & Then
-        mockMvc.perform(post("/calculate")
+        mockMvc.perform(post(URI)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(request)))
                 .andExpect(status().isBadRequest())
@@ -160,7 +162,7 @@ class CalculatorControllerIntegrationTest {
         CalculationRequest request = new CalculationRequest("");
 
         // When & Then
-        mockMvc.perform(post("/calculate")
+        mockMvc.perform(post(URI)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(request)))
                 .andExpect(status().isBadRequest());
@@ -172,7 +174,7 @@ class CalculatorControllerIntegrationTest {
         String requestJson = "{\"expression\": null}";
 
         // When & Then
-        mockMvc.perform(post("/calculate")
+        mockMvc.perform(post(URI)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestJson))
                 .andExpect(status().isBadRequest());
@@ -190,7 +192,7 @@ class CalculatorControllerIntegrationTest {
         CalculationRequest request = new CalculationRequest(expression.toString());
 
         // When & Then
-        mockMvc.perform(post("/calculate")
+        mockMvc.perform(post(URI)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(request)))
                 .andExpect(status().isOk())
@@ -203,7 +205,7 @@ class CalculatorControllerIntegrationTest {
         CalculationRequest request = new CalculationRequest("1000000 * 1000");
 
         // When & Then
-        mockMvc.perform(post("/calculate")
+        mockMvc.perform(post(URI)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(request)))
                 .andExpect(status().isOk())
@@ -216,7 +218,7 @@ class CalculatorControllerIntegrationTest {
         CalculationRequest request = new CalculationRequest("100 / 3 * 3");
 
         // When & Then
-        mockMvc.perform(post("/calculate")
+        mockMvc.perform(post(URI)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(request)))
                 .andExpect(status().isOk())
@@ -236,19 +238,19 @@ class CalculatorControllerIntegrationTest {
         CalculationRequest request3 = new CalculationRequest("10 * 10");
 
         // When & Then - execute multiple requests
-        mockMvc.perform(post("/calculate")
+        mockMvc.perform(post(URI)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(request1)))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.result").value(300));
 
-        mockMvc.perform(post("/calculate")
+        mockMvc.perform(post(URI)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(request2)))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.result").value(400));
 
-        mockMvc.perform(post("/calculate")
+        mockMvc.perform(post(URI)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(request3)))
                 .andExpect(status().isOk())

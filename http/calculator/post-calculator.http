@@ -1,0 +1,8 @@
+### Calculate
+#@no-log
+POST {{host}}/api/calculate
+Content-Type: application/json
+
+{
+    "expression": "2 + 3 * 4"
+}
