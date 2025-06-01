@@ -91,7 +91,7 @@ describe('CalculatorComponent', () => {
     
     component.clearInput();
 
-    expect(component.calculatorForm.get('expression')?.value).toBe('');
+    expect(component.calculatorForm.get('expression')?.value).toBeNull();
     expect(component.result).toBeNull();
     expect(component.errorMessage).toBe('');
   });
@@ -127,7 +127,7 @@ describe('CalculatorComponent', () => {
     const errorMessage = 'Server error occurred';
     
     mockCalculatorService.calculateExpression.and.returnValue(
-      throwError(() => ({ error: { message: errorMessage } }))
+      throwError(() => ({ error: { error: errorMessage } }))
     );
     
     component.calculatorForm.get('expression')?.setValue(expression);
