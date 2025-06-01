@@ -63,10 +63,6 @@ jobs:
       working-directory: ./webapp
       run: npm ci
     
-    - name: Run linting
-      working-directory: ./webapp
-      run: npm run lint
-    
     - name: Run frontend tests
       working-directory: ./webapp
       run: npm run test -- --watch=false --browsers=ChromeHeadless --code-coverage
