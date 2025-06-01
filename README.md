@@ -47,7 +47,7 @@ calculator-alligator/
 
 1. Clone the repository:
 ```bash
-git clone [repository-url]
+git clone https://github.com/jpozarycki/calculator-alligator.git
 cd calculator-alligator
 ```
 
@@ -102,7 +102,7 @@ The Angular application will be available at `http://localhost:4200`.
 The project follows a hexagonal architecture (though there was no need for the domain layer):
 
 - **app**: Main Spring Boot application module
-- **monolith**: Core business logic in a monolithic structure
+- **monolith**: Core entrypoint for the
 - **adapters**: Integration adapters for external services or different interfaces
 
 ## 🧪 Testing
