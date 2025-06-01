@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  backend:
+    image: ${DOCKER_USERNAME}/calculator-backend:${TAG:-latest}
+    container_name: calculator-backend
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=production
+      - JAVA_OPTS=-Xmx512m -Xms256m
+    restart: unless-stopped
+    networks:
+      - calculator-network
+    volumes:
+      - backend-logs:/app/logs
+
+  frontend:
+    image: ${DOCKER_USERNAME}/calculator-frontend:${TAG:-latest}
+    container_name: calculator-frontend
+    ports:
+      - "80:80"
+      - "443:443"  # For future HTTPS support
+    depends_on:
+      - backend
+    restart: unless-stopped
+    networks:
+      - calculator-network
+    volumes:
+      - nginx-logs:/var/log/nginx
+      - ./ssl:/etc/nginx/ssl:ro  # For future SSL certificates
+
+networks:
+  calculator-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
+
+volumes:
+  backend-logs:
+    driver: local
+  nginx-logs:
+    driver: local 
