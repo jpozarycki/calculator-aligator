@@ -60,7 +60,7 @@ class CalculatorService implements CalculatorFacade {
             } else if (Character.isDigit(ch)) {
                 currentToken.append(ch);
             } else {
-                throw new IllegalArgumentException("Invalid character in expression: " + ch);
+                throw new IllegalArgumentException("Invalid character in expression. Please use only digits (0-9), operators (+, -, *, /), and spaces.");
             }
         }
         
