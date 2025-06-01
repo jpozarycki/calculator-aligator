@@ -102,7 +102,7 @@ The Angular application will be available at `http://localhost:4200`.
 The project follows a hexagonal architecture (though there was no need for the domain layer):
 
 - **app**: Main Spring Boot application module
-- **monolith**: Core entrypoint for the
+- **monolith**: Core entrypoint for the application
 - **adapters**: Integration adapters for external services or different interfaces
 
 ## 🧪 Testing
