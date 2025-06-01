@@ -34,14 +34,6 @@ jobs:
     
     - name: Run backend tests
       run: mvn test
-    
-    - name: Generate test report
-      uses: dorny/test-reporter@v1
-      if: success() || failure()
-      with:
-        name: Maven Tests
-        path: '**/target/surefire-reports/TEST-*.xml'
-        reporter: java-junit
 
   # Job 2: Test Frontend
   frontend-test:
@@ -65,12 +57,7 @@ jobs:
     
     - name: Run frontend tests
       working-directory: ./webapp
-      run: npm run test -- --watch=false --browsers=ChromeHeadless --code-coverage
-    
-    - name: Upload coverage reports
-      uses: codecov/codecov-action@v3
-      with:
-        directory: ./webapp/coverage
+      run: npm run test -- --watch=false --browsers=ChromeHeadless
 
   # Job 3: Build and Push Docker Images
   build-docker-images:
