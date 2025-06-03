@@ -1,7 +1,11 @@
 package com.jpozarycki.calculator;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -10,136 +14,105 @@ class CalculatorServiceTest {
 
     @BeforeEach
     void setUp() {
-        calculatorService = new CalculatorService();
+        var operationRegistry = new OperationRegistry();
+        calculatorService = new CalculatorService(
+                new OperationRegistry(),
+                new ShuntingYardEvaluator(operationRegistry),
+                new BasicExpressionTokenizer(operationRegistry),
+                new BasicExpressionValidator());
     }
 
-    // Test basic addition
-    @Test
-    void testSimpleAddition() {
-        assertEquals(5, calculatorService.calculate("2 + 3"));
-        assertEquals(10, calculatorService.calculate("5 + 5"));
-        assertEquals(0, calculatorService.calculate("0 + 0"));
+    @Nested
+    @DisplayName("Basic Arithmetic Operations")
+    class BasicArithmeticOperations {
+        @ParameterizedTest
+        @CsvFileSource(resources = "/calculator/basic-arithmetic.csv", numLinesToSkip = 1)
+        @DisplayName("Basic arithmetic: {0} = {1}")
+        void testBasicArithmetic(String expression, int expected) {
+            assertEquals(expected, calculatorService.calculate(expression));
+        }
     }
 
-    // Test basic subtraction
-    @Test
-    void testSimpleSubtraction() {
-        assertEquals(2, calculatorService.calculate("5 - 3"));
-        assertEquals(-5, calculatorService.calculate("0 - 5"));
-        assertEquals(0, calculatorService.calculate("10 - 10"));
+    @Nested
+    @DisplayName("Order of Operations")
+    class OrderOfOperations {
+        @ParameterizedTest
+        @CsvFileSource(resources = "/calculator/order-of-operations.csv", numLinesToSkip = 1)
+        @DisplayName("Order of operations: {0} = {1}")
+        void testOrderOfOperations(String expression, int expected) {
+            assertEquals(expected, calculatorService.calculate(expression));
+        }
     }
 
-    // Test basic multiplication
-    @Test
-    void testSimpleMultiplication() {
-        assertEquals(15, calculatorService.calculate("3 * 5"));
-        assertEquals(0, calculatorService.calculate("0 * 100"));
-        assertEquals(1, calculatorService.calculate("1 * 1"));
+    @Nested
+    @DisplayName("Negative Numbers")
+    class NegativeNumbers {
+        @ParameterizedTest
+        @CsvFileSource(resources = "/calculator/negative-numbers.csv", numLinesToSkip = 1)
+        @DisplayName("Negative numbers: {0} = {1}")
+        void testNegativeNumbers(String expression, int expected) {
+            assertEquals(expected, calculatorService.calculate(expression));
+        }
     }
 
-    // Test basic division
-    @Test
-    void testSimpleDivision() {
-        assertEquals(5, calculatorService.calculate("10 / 2"));
-        assertEquals(3, calculatorService.calculate("9 / 3"));
-        assertEquals(1, calculatorService.calculate("7 / 7"));
+    @Nested
+    @DisplayName("Complex Expressions")
+    class ComplexExpressions {
+        @ParameterizedTest
+        @CsvFileSource(resources = "/calculator/complex-expressions.csv", numLinesToSkip = 1)
+        @DisplayName("Complex expressions: {0} = {1}")
+        void testComplexExpressions(String expression, int expected) {
+            assertEquals(expected, calculatorService.calculate(expression));
+        }
     }
 
-    // Test order of operations (multiplication/division before addition/subtraction)
-    @Test
-    void testOrderOfOperations() {
-        assertEquals(7, calculatorService.calculate("3 * 2 + 1"));
-        assertEquals(11, calculatorService.calculate("2 + 3 * 3"));
-        assertEquals(5, calculatorService.calculate("10 / 2 + 0"));
-        assertEquals(9, calculatorService.calculate("12 / 3 + 5"));
-        assertEquals(14, calculatorService.calculate("2 + 3 * 4"));
-        assertEquals(10, calculatorService.calculate("20 / 2 - 0"));
+    @Nested
+    @DisplayName("Edge Cases")
+    class EdgeCases {
+        @ParameterizedTest
+        @CsvFileSource(resources = "/calculator/edge-cases.csv", numLinesToSkip = 1)
+        @DisplayName("Edge cases: {0} = {1}")
+        void testEdgeCases(String expression, int expected) {
+            assertEquals(expected, calculatorService.calculate(expression));
+        }
     }
 
-    // Test with negative numbers
-    @Test
-    void testNegativeNumbers() {
-        assertEquals(0, calculatorService.calculate("3 * -2 + 6"));
-        assertEquals(-5, calculatorService.calculate("-2 + -3"));
-        assertEquals(6, calculatorService.calculate("-2 * -3"));
-        assertEquals(-10, calculatorService.calculate("10 * -1"));
-        assertEquals(2, calculatorService.calculate("-4 / -2"));
-        assertEquals(-2, calculatorService.calculate("4 / -2"));
+    @Nested
+    @DisplayName("Error Handling")
+    class ErrorHandling {
+        @ParameterizedTest
+        @CsvFileSource(resources = "/calculator/invalid-syntax.csv", numLinesToSkip = 1)
+        @DisplayName("Invalid syntax: '{0}' should throw IllegalArgumentException")
+        void testInvalidSyntaxExpressions(String expression) {
+            assertThrows(IllegalArgumentException.class, 
+                () -> calculatorService.calculate(expression),
+                "Expression '" + expression + "' should throw IllegalArgumentException");
+        }
+
+        @ParameterizedTest
+        @CsvFileSource(resources = "/calculator/arithmetic-errors.csv", numLinesToSkip = 1)
+        @DisplayName("Arithmetic error: '{0}' should throw ArithmeticException")
+        void testArithmeticErrors(String expression) {
+            assertThrows(ArithmeticException.class, 
+                () -> calculatorService.calculate(expression),
+                "Expression '" + expression + "' should throw ArithmeticException");
+        }
     }
 
-    // Test complex expressions
-    @Test
-    void testComplexExpressions() {
-        assertEquals(14, calculatorService.calculate("2 + 3 * 4"));
-        assertEquals(8, calculatorService.calculate("2 * 3 + 2"));
-        assertEquals(5, calculatorService.calculate("10 / 2 * 1"));
-        assertEquals(1, calculatorService.calculate("10 / 2 / 5"));
-        assertEquals(7, calculatorService.calculate("1 + 2 * 3"));
-        assertEquals(9, calculatorService.calculate("3 * 3 / 1"));
-    }
-
-    // Test with multiple operations
-    @Test
-    void testMultipleOperations() {
-        assertEquals(10, calculatorService.calculate("2 + 3 * 4 - 4"));
-        assertEquals(3, calculatorService.calculate("10 / 2 - 2"));
-        assertEquals(11, calculatorService.calculate("2 * 3 + 5"));
-        assertEquals(0, calculatorService.calculate("5 - 10 / 2"));
-        assertEquals(7, calculatorService.calculate("1 + 2 + 3 + 1"));
-    }
-
-    // Test edge cases with single numbers
-    @Test
-    void testSingleNumber() {
-        assertEquals(5, calculatorService.calculate("5"));
-        assertEquals(-5, calculatorService.calculate("-5"));
-        assertEquals(0, calculatorService.calculate("0"));
-    }
-
-    // Test with extra spaces
-    @Test
-    void testExtraSpaces() {
-        assertEquals(5, calculatorService.calculate("2  +  3"));
-        assertEquals(7, calculatorService.calculate("  3 * 2 + 1  "));
-        assertEquals(0, calculatorService.calculate("3 *   -2 +   6"));
-    }
-
-    // Test division resulting in integer (following Java integer division rules)
-    @Test
-    void testIntegerDivision() {
-        assertEquals(3, calculatorService.calculate("10 / 3")); // 3.33... truncated to 3
-        assertEquals(2, calculatorService.calculate("5 / 2"));  // 2.5 truncated to 2
-        assertEquals(0, calculatorService.calculate("1 / 2"));  // 0.5 truncated to 0
-    }
-
-    // Test division by zero (should throw exception or handle appropriately)
-    @Test
-    void testDivisionByZero() {
-        assertThrows(ArithmeticException.class, () -> calculatorService.calculate("10 / 0"));
-        assertThrows(ArithmeticException.class, () -> calculatorService.calculate("5 * 2 / 0"));
-    }
-
-    // Test invalid expressions
-    @Test
-    void testInvalidExpressions() {
-        assertThrows(IllegalArgumentException.class, () -> calculatorService.calculate(""));
-        assertThrows(IllegalArgumentException.class, () -> calculatorService.calculate("2 +"));
-        assertThrows(IllegalArgumentException.class, () -> calculatorService.calculate("+ 2"));
-        assertThrows(IllegalArgumentException.class, () -> calculatorService.calculate("2 + + 3"));
-        assertThrows(IllegalArgumentException.class, () -> calculatorService.calculate("abc"));
-        assertThrows(IllegalArgumentException.class, () -> calculatorService.calculate("2 & 3"));
-    }
-
-    // Test from the examples in the task
-    @Test
-    void testTaskExamples() {
-        // EX1: calculate("2 + 3") should return 5
-        assertEquals(5, calculatorService.calculate("2 + 3"));
-        
-        // EX2: calculate("3 * 2 + 1") should return 7
-        assertEquals(7, calculatorService.calculate("3 * 2 + 1"));
-        
-        // EX3: calculate("3 * -2 + 6") should return 0
-        assertEquals(0, calculatorService.calculate("3 * -2 + 6"));
+    @Nested
+    @DisplayName("Task Examples")
+    class TaskExamples {
+        @Test
+        @DisplayName("Task specific examples")
+        void testTaskExamples() {
+            // EX1: calculate("2 + 3") should return 5
+            assertEquals(5, calculatorService.calculate("2 + 3"));
+            
+            // EX2: calculate("3 * 2 + 1") should return 7
+            assertEquals(7, calculatorService.calculate("3 * 2 + 1"));
+            
+            // EX3: calculate("3 * -2 + 6") should return 0
+            assertEquals(0, calculatorService.calculate("3 * -2 + 6"));
+        }
     }
 }
