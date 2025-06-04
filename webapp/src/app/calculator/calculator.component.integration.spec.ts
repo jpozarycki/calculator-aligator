@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { CalculatorComponent } from './calculator.component';
-import { CalculatorHttpService } from './calculator-http.service';
+import { CALCULATOR_SERVICE_PROVIDER } from './calculator-http.service';
 import { CalculationResponse } from './calculator.interfaces';
 import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
@@ -20,7 +20,7 @@ describe('CalculatorComponent Integration Tests', () => {
         ReactiveFormsModule,
         HttpClientTestingModule
       ],
-      providers: [CalculatorHttpService]
+      providers: [CALCULATOR_SERVICE_PROVIDER]
     })
     .compileComponents();
 
@@ -147,25 +147,19 @@ describe('CalculatorComponent Integration Tests', () => {
     const input = debugElement.query(By.css('input[formControlName="expression"]'));
     input.nativeElement.value = '2 + + 3';
     input.nativeElement.dispatchEvent(new Event('input'));
+    input.nativeElement.dispatchEvent(new Event('blur')); // Trigger touched state for validation
     fixture.detectChanges();
 
-    // Click calculate button
+    // The form should be invalid, so the submit button should be disabled
     const calculateButton = debugElement.query(By.css('button[type="submit"]'));
-    calculateButton.nativeElement.click();
-    fixture.detectChanges();
-
-    // Mock backend error response
-    const mockResponse: CalculationResponse = { 
-      result: null, 
-      error: 'Invalid expression: Expected a number but found operator' 
-    };
-    const req = httpMock.expectOne('/api/calculate');
-    req.flush(mockResponse);
-    fixture.detectChanges();
-
-    // Verify error is displayed
-    const errorElement = debugElement.query(By.css('[data-testid="error-message"]'));
-    expect(errorElement.nativeElement.textContent).toContain('Invalid expression');
+    expect(calculateButton.nativeElement.disabled).toBeTrue();
+    
+    // Should show client-side validation error, not make HTTP request
+    const errorContainer = debugElement.query(By.css('#expression-error'));
+    expect(errorContainer).toBeTruthy();
+    
+    // No HTTP request should be made due to client-side validation
+    httpMock.expectNone('/api/calculate');
   });
 
   it('should clear form and results when clear button is clicked', () => {
